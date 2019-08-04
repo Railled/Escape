@@ -55,6 +55,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if (!PhysicsHande) { return; }
 	//if the physics hande is attached
 	if (PhysicsHande->GrabbedComponent)
 	{
@@ -73,6 +74,7 @@ void UGrabber::Grab()
 	// if we hit smt then attach a physics hande
 	if (ActorHit)
 	{
+		if (!PhysicsHande) { return; }
 		PhysicsHande->GrabComponent(
 			ComponentToGrab,
 			NAME_None, //no bones needed
@@ -84,6 +86,7 @@ void UGrabber::Grab()
 
 void UGrabber::Release()
 {
+	if (!PhysicsHande) { return; }
 	PhysicsHande->ReleaseComponent();
 }
 
